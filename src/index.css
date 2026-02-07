@@ -1,88 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=Inter:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* LAMINOR Design System
+   French patisserie meets modern minimalism
+   Colors: Deep burgundy, warm cream, champagne gold
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core brand colors */
+    --burgundy: 348 40% 18%;
+    --burgundy-light: 348 35% 25%;
+    --cream: 40 30% 96%;
+    --cream-warm: 38 35% 92%;
+    --champagne: 38 55% 65%;
+    --champagne-light: 40 50% 75%;
+    
+    /* Semantic tokens */
+    --background: 40 30% 96%;
+    --foreground: 348 40% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 348 40% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 348 40% 18%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 348 40% 18%;
+    --primary-foreground: 40 30% 96%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 38 35% 92%;
+    --secondary-foreground: 348 40% 18%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 38 25% 90%;
+    --muted-foreground: 348 25% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 38 55% 65%;
+    --accent-foreground: 348 40% 18%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 38 30% 85%;
+    --input: 38 30% 85%;
+    --ring: 38 55% 65%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
+
+    /* Typography */
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    
+    /* Shadows */
+    --shadow-subtle: 0 2px 20px -2px hsl(348 40% 18% / 0.08);
+    --shadow-elevated: 0 8px 40px -8px hsl(348 40% 18% / 0.12);
+    
+    /* Spacing */
+    --section-padding: clamp(4rem, 10vw, 8rem);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 348 40% 12%;
+    --foreground: 40 30% 96%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 348 38% 15%;
+    --card-foreground: 40 30% 96%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 348 38% 15%;
+    --popover-foreground: 40 30% 96%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 40 30% 96%;
+    --primary-foreground: 348 40% 18%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 348 35% 20%;
+    --secondary-foreground: 40 30% 96%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 348 30% 22%;
+    --muted-foreground: 40 20% 70%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 38 55% 65%;
+    --accent-foreground: 348 40% 12%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 348 30% 25%;
+    --input: 348 30% 25%;
+    --ring: 38 55% 65%;
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -99,7 +113,97 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    @apply font-medium tracking-tight;
+  }
+}
+
+@layer components {
+  /* Hero button variants */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4 
+           bg-primary text-primary-foreground 
+           font-medium tracking-wide uppercase text-sm
+           transition-all duration-300 ease-out
+           hover:bg-burgundy-light;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-4
+           border border-accent text-accent
+           font-medium tracking-wide uppercase text-sm
+           transition-all duration-300 ease-out
+           hover:bg-accent hover:text-accent-foreground;
+  }
+  
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-4
+           border border-primary text-primary
+           font-medium tracking-wide uppercase text-sm
+           transition-all duration-300 ease-out
+           hover:bg-primary hover:text-primary-foreground;
+  }
+
+  /* Section containers */
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+  
+  .section-padding {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+  }
+
+  /* Typography utilities */
+  .heading-display {
+    font-family: var(--font-serif);
+    @apply text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-tight;
+  }
+  
+  .heading-section {
+    font-family: var(--font-serif);
+    @apply text-3xl md:text-4xl font-medium tracking-tight;
+  }
+  
+  .heading-subsection {
+    font-family: var(--font-serif);
+    @apply text-2xl md:text-3xl font-medium;
+  }
+  
+  .text-body {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+  
+  .text-small {
+    @apply text-sm tracking-wide;
+  }
+  
+  .label-uppercase {
+    @apply text-xs tracking-[0.2em] uppercase font-medium;
+  }
+
+  /* Decorative elements */
+  .gold-line {
+    @apply h-px w-16 bg-accent;
+  }
+  
+  .gold-line-vertical {
+    @apply w-px h-16 bg-accent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }
