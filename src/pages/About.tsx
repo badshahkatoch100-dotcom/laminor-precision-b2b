@@ -42,6 +42,9 @@ const About = () => {
           </div>
         </section>
 
+        {/* Chef Section - Full Version */}
+        <ChefSection variant="full" />
+
         {/* Values Section */}
         <section className="section-padding bg-cream-warm">
           <div className="section-container">
