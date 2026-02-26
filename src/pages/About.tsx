@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ChefSection } from "@/components/home/ChefSection";
 
 const About = () => {
   return (
