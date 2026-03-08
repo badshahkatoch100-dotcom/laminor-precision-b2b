@@ -15,12 +15,22 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-burgundy via-burgundy/90 to-burgundy/70" />
       </div>
 
+      {/* Logo Watermark */}
+      <div className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none">
+        <img
+          src={logo}
+          alt=""
+          className="w-[60vw] max-w-[700px] h-auto object-contain opacity-[0.07]"
+          style={{ imageRendering: "auto" }}
+        />
+      </div>
+
       {/* Content */}
       <div className="relative z-10 section-container w-full pt-24 pb-16">
         <div className="max-w-3xl">
           {/* Logo Badge */}
           <div className="mb-8 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            <img src={logo} alt="Laminor" className="h-20 lg:h-24 w-auto opacity-90" />
+            <img src={logo} alt="Laminor" className="h-20 lg:h-24 w-auto" />
           </div>
 
           {/* Headline */}
