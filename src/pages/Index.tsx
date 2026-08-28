@@ -1,29 +1,51 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { HeroSection } from "@/components/home/HeroSection";
-import { TrustSection } from "@/components/home/TrustSection";
-import { ChefSection } from "@/components/home/ChefSection";
-import { ProductsSection } from "@/components/home/ProductsSection";
-import { B2BSection } from "@/components/home/B2BSection";
-import { QualitySection } from "@/components/home/QualitySection";
-import { ContactSection } from "@/components/home/ContactSection";
+import { HeroSection } from "@/components/portfolio/HeroSection";
+import { AboutSection } from "@/components/portfolio/AboutSection";
+import { CareerSection } from "@/components/portfolio/CareerSection";
+import { ExpertiseSection } from "@/components/portfolio/ExpertiseSection";
+import { InternationalSection } from "@/components/portfolio/InternationalSection";
+import { AchievementsSection } from "@/components/portfolio/AchievementsSection";
+import { CertificationsSection } from "@/components/portfolio/CertificationsSection";
+import { LanguagesSection } from "@/components/portfolio/LanguagesSection";
+import { ContactSection } from "@/components/portfolio/ContactSection";
+import { chef, career, education, languages } from "@/data/cv";
 
-const Index = () => {
-  return (
-    <div className="min-h-screen">
-      <Header />
-      <main>
-        <HeroSection />
-        <TrustSection />
-        <ChefSection />
-        <ProductsSection />
-        <B2BSection />
-        <QualitySection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
-  );
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: chef.name,
+  jobTitle: chef.role,
+  email: `mailto:${chef.email}`,
+  telephone: chef.phones.map((p) => `+91${p.replace(/\s/g, "")}`),
+  address: { "@type": "PostalAddress", addressLocality: "Mumbai", addressCountry: "IN" },
+  worksFor: { "@type": "Organization", name: chef.currentPosition.org },
+  alumniOf: { "@type": "CollegeOrUniversity", name: education.institute },
+  knowsLanguage: languages.map((l) => l.name),
+  hasOccupation: career.map((c) => ({
+    "@type": "Occupation",
+    name: c.title,
+    occupationLocation: { "@type": "Place", name: c.location },
+  })),
 };
+
+const Index = () => (
+  <div className="min-h-screen bg-background">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    <Header />
+    <main>
+      <HeroSection />
+      <AboutSection />
+      <CareerSection />
+      <ExpertiseSection />
+      <InternationalSection />
+      <AchievementsSection />
+      <CertificationsSection />
+      <LanguagesSection />
+      <ContactSection />
+    </main>
+    <Footer />
+  </div>
+);
 
 export default Index;
