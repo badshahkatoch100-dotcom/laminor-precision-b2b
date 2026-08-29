@@ -46,14 +46,10 @@ export function CareerSection() {
                       entry.current ? "text-champagne" : "text-muted-foreground"
                     }`}
                   >
-                    {entry.period}
+                    {entry.current ? "Present" : entry.period}
                   </span>
-                  {entry.current && (
-                    <span className="block label-uppercase text-[0.6rem] text-champagne/70 mt-1">
-                      Present role
-                    </span>
-                  )}
                 </div>
+
 
                 <div>
                   <h3 className="heading-subsection text-foreground">{entry.org}</h3>
