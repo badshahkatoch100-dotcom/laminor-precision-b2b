@@ -17,12 +17,12 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   const centered = align === "center";
   return (
-    <Reveal className={`mb-14 ${centered ? "text-center" : ""}`}>
+    <Reveal className={`mb-12 lg:mb-16 ${centered ? "text-center" : ""}`}>
       <span className="label-uppercase text-champagne mb-4 block">{eyebrow}</span>
       <h2
-        className={`heading-section ${tone === "dark" ? "text-foreground" : "text-cream"} max-w-3xl ${
-          centered ? "mx-auto" : ""
-        }`}
+        className={`heading-section max-w-3xl ${
+          tone === "dark" ? "text-foreground" : "text-cream"
+        } ${centered ? "mx-auto" : ""}`}
       >
         {title}
       </h2>

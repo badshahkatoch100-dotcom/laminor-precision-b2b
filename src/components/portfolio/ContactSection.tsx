@@ -4,31 +4,31 @@ import { chef } from "@/data/cv";
 
 const telHref = (phone: string) => `tel:+91${phone.replace(/\s/g, "")}`;
 
+const linkClass =
+  "text-cream hover:text-champagne transition-colors break-words " +
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne";
+
 export function ContactSection() {
   return (
     <section id="contact" className="section-padding bg-burgundy">
       <div className="section-container">
         <Reveal className="max-w-3xl">
           <span className="label-uppercase text-champagne mb-4 block">Contact</span>
-          <h2 className="heading-section text-cream mb-6">
+          <h2 className="heading-section text-cream">
             Open to professional opportunities.
           </h2>
-          <div className="gold-line mb-8" />
+          <div className="gold-line mt-6 mb-6" />
           <p className="text-body text-cream-warm/70">
             For roles, consulting or collaboration in flight catering, hospitality
             and high-volume production kitchens.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-px bg-champagne/20 border border-champagne/20">
+        <div className="mt-12 lg:mt-16 grid grid-cols-1 md:grid-cols-3 gap-px bg-champagne/20 border border-champagne/20">
           <Reveal className="bg-burgundy p-8">
             <Mail className="w-5 h-5 text-champagne mb-4" strokeWidth={1.5} aria-hidden="true" />
             <span className="label-uppercase text-cream-warm/50 block mb-2">Email</span>
-            <a
-              href={`mailto:${chef.email}`}
-              className="text-cream hover:text-champagne transition-colors break-words
-                         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-            >
+            <a href={`mailto:${chef.email}`} className={linkClass}>
               {chef.email}
             </a>
           </Reveal>
@@ -36,14 +36,10 @@ export function ContactSection() {
           <Reveal delay={60} className="bg-burgundy p-8">
             <Phone className="w-5 h-5 text-champagne mb-4" strokeWidth={1.5} aria-hidden="true" />
             <span className="label-uppercase text-cream-warm/50 block mb-2">Phone</span>
-            <ul className="space-y-1">
+            <ul className="space-y-1.5">
               {chef.phones.map((phone) => (
                 <li key={phone}>
-                  <a
-                    href={telHref(phone)}
-                    className="text-cream hover:text-champagne transition-colors
-                               focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-                  >
+                  <a href={telHref(phone)} className={`${linkClass} tabular`}>
                     {phone}
                   </a>
                 </li>
@@ -61,10 +57,7 @@ export function ContactSection() {
         <Reveal delay={160} className="mt-12">
           <a
             href={`mailto:${chef.email}`}
-            className="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4
-                       bg-champagne text-burgundy font-medium tracking-wide uppercase text-sm
-                       transition-colors duration-300 hover:bg-champagne-light
-                       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne-light"
+            className="btn-gold w-full sm:w-auto"
           >
             Get In Touch
           </a>
