@@ -219,9 +219,13 @@
   }
 }
 
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
 }
+
