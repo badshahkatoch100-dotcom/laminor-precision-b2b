@@ -115,6 +115,19 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Fixed header offset for anchor navigation */
+  section[id],
+  div[id] {
+    scroll-margin-top: 5rem;
   }
 
   body {
@@ -126,6 +139,12 @@
     font-family: var(--font-serif);
     @apply font-medium tracking-tight;
   }
+
+  ::selection {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--burgundy));
+  }
+
 }
 
 @layer components {
