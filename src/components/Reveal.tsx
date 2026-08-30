@@ -1,28 +1,26 @@
 import { ReactNode } from "react";
-import { useReveal } from "@/hooks/use-reveal";
+import { FadeIn } from "@/components/motion/Motion";
 
 interface RevealProps {
   children: ReactNode;
+  /** Delay in milliseconds. */
   delay?: number;
   className?: string;
-  as?: "div" | "li" | "section";
+  as?: "div" | "li" | "section" | "p" | "span";
+  distance?: number;
 }
 
-export function Reveal({ children, delay = 0, className = "", as = "div" }: RevealProps) {
-  const { ref, shown } = useReveal<HTMLDivElement>();
-  const Tag = as as "div";
-
+/** Thin compatibility wrapper over the shared motion system. */
+export function Reveal({
+  children,
+  delay = 0,
+  className = "",
+  as = "div",
+  distance = 22,
+}: RevealProps) {
   return (
-    <Tag
-      ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`motion-safe:transition-all motion-safe:duration-700 motion-safe:ease-out ${
-        shown
-          ? "opacity-100 translate-y-0"
-          : "motion-safe:opacity-0 motion-safe:translate-y-4"
-      } ${className}`}
-    >
+    <FadeIn as={as} delay={delay / 1000} className={className} distance={distance}>
       {children}
-    </Tag>
+    </FadeIn>
   );
 }

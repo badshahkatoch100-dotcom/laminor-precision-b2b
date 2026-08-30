@@ -1,8 +1,13 @@
-import { Reveal } from "@/components/Reveal";
+import { useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { SectionHeading } from "./SectionHeading";
+import { FadeIn, EASE } from "@/components/motion/Motion";
 import { expertise } from "@/data/cv";
 
 export function ExpertiseSection() {
+  const [open, setOpen] = useState<number | null>(0);
+  const reduce = useReducedMotion();
+
   return (
     <section id="expertise" className="section-padding bg-cream">
       <div className="section-container">
@@ -11,23 +16,64 @@ export function ExpertiseSection() {
           title="Disciplines practised daily, at scale."
         />
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-          {expertise.map((item, index) => (
-            <Reveal
-              as="li"
-              key={item.title}
-              delay={index * 40}
-              className="bg-cream p-8 lg:p-10 transition-colors duration-300 hover:bg-cream-warm"
-            >
-              <span className="label-uppercase tabular text-champagne block mb-5">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="heading-card text-foreground mb-2.5">{item.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {item.note}
-              </p>
-            </Reveal>
-          ))}
+        <ul className="border-t border-border max-w-5xl">
+          {expertise.map((item, index) => {
+            const isOpen = open === index;
+            return (
+              <FadeIn
+                as="li"
+                key={item.title}
+                delay={index * 0.04}
+                distance={16}
+                className="border-b border-border"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpen(isOpen ? null : index)}
+                  onMouseEnter={() => setOpen(index)}
+                  onFocus={() => setOpen(index)}
+                  aria-expanded={isOpen}
+                  className="group w-full text-left py-6 sm:py-7 flex items-baseline gap-5 sm:gap-10
+                             focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                >
+                  <span className="label-uppercase tabular text-champagne/70 shrink-0 w-8">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <span className="flex-1">
+                    <span
+                      className={`heading-subsection block transition-colors duration-300 ${
+                        isOpen ? "text-champagne" : "text-foreground"
+                      }`}
+                    >
+                      {item.title}
+                    </span>
+
+                    <motion.span
+                      className="block overflow-hidden"
+                      initial={false}
+                      animate={{
+                        height: isOpen || reduce ? "auto" : 0,
+                        opacity: isOpen || reduce ? 1 : 0,
+                      }}
+                      transition={{ duration: 0.4, ease: EASE }}
+                    >
+                      <span className="block text-muted-foreground text-sm leading-relaxed pt-3 max-w-xl">
+                        {item.note}
+                      </span>
+                    </motion.span>
+                  </span>
+
+                  <span
+                    aria-hidden="true"
+                    className={`hidden sm:block h-px bg-champagne transition-all duration-500 ${
+                      isOpen ? "w-16 opacity-100" : "w-6 opacity-40"
+                    }`}
+                  />
+                </button>
+              </FadeIn>
+            );
+          })}
         </ul>
       </div>
     </section>

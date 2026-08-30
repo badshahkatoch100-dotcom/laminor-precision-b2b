@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
 import { chef } from "@/data/cv";
+import { EASE } from "@/components/motion/Motion";
 
 const navLinks = [
   { name: "Home", id: "home" },
@@ -16,6 +18,13 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
+
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -70,16 +79,23 @@ export function Header() {
         Skip to content
       </a>
 
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
+      <motion.header
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,border-color,height] duration-500
           ${
             scrolled || isOpen
               ? "bg-burgundy/95 backdrop-blur-md shadow-elevated border-b border-champagne/15"
-              : "bg-burgundy/80 backdrop-blur-sm border-b border-transparent"
+              : "bg-transparent border-b border-transparent"
           }`}
       >
         <nav className="section-container" aria-label="Main">
-          <div className="flex items-center justify-between h-20">
+          <div
+            className={`flex items-center justify-between transition-all duration-500 ${
+              scrolled ? "h-16" : "h-20 lg:h-24"
+            }`}
+          >
             <a
               href="#home"
               className="group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne"
@@ -87,7 +103,11 @@ export function Header() {
               <span className="block font-serif text-lg leading-tight tracking-wide text-cream transition-colors group-hover:text-champagne">
                 Deepak Y. Telang
               </span>
-              <span className="block label-uppercase text-champagne/70 text-[0.6rem] mt-0.5">
+              <span
+                className={`block label-uppercase text-champagne/70 text-[0.6rem] mt-0.5 overflow-hidden transition-all duration-500 ${
+                  scrolled ? "max-h-0 opacity-0" : "max-h-4 opacity-100"
+                }`}
+              >
                 {chef.role}
               </span>
             </a>
@@ -96,20 +116,23 @@ export function Header() {
               {navLinks.map((link) => {
                 const isActive = active === link.id;
                 return (
-                  <li key={link.name}>
+                  <li key={link.name} className="relative">
                     <a
                       href={`#${link.id}`}
                       aria-current={isActive ? "true" : undefined}
-                      className={`relative label-uppercase py-2 transition-colors
+                      className={`relative block label-uppercase py-2 transition-colors duration-300
                         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne
                         ${isActive ? "text-champagne" : "text-cream-warm/70 hover:text-cream"}`}
                     >
                       {link.name}
-                      <span
-                        aria-hidden="true"
-                        className={`absolute left-0 -bottom-0.5 h-px bg-champagne transition-all duration-300
-                          ${isActive ? "w-full" : "w-0"}`}
-                      />
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-underline"
+                          aria-hidden="true"
+                          className="absolute left-0 right-0 -bottom-0.5 h-px bg-champagne"
+                          transition={{ duration: 0.4, ease: EASE }}
+                        />
+                      )}
                     </a>
                   </li>
                 );
@@ -129,30 +152,50 @@ export function Header() {
           </div>
         </nav>
 
-        {isOpen && (
-          <div
-            id="mobile-menu"
-            className="lg:hidden absolute top-20 left-0 right-0 bg-burgundy border-t border-champagne/20
-                       max-h-[calc(100vh-5rem)] overflow-y-auto"
-          >
-            <ul className="section-container py-4 flex flex-col">
-              {navLinks.map((link) => (
-                <li key={link.name} className="border-b border-champagne/10 last:border-0">
-                  <a
-                    href={`#${link.id}`}
-                    onClick={() => setIsOpen(false)}
-                    aria-current={active === link.id ? "true" : undefined}
-                    className={`block label-uppercase py-4 transition-colors
-                      ${active === link.id ? "text-champagne" : "text-cream-warm/80 hover:text-champagne"}`}
+        {/* Scroll progress */}
+        <motion.div
+          aria-hidden="true"
+          className="absolute bottom-0 left-0 right-0 h-px bg-champagne origin-left"
+          style={{ scaleX: progress }}
+        />
+
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              id="mobile-menu"
+              key="mobile-menu"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3, ease: EASE }}
+              className="lg:hidden absolute top-full left-0 right-0 bg-burgundy border-t border-champagne/20
+                         max-h-[calc(100vh-4rem)] overflow-y-auto"
+            >
+              <ul className="section-container py-4 flex flex-col">
+                {navLinks.map((link, i) => (
+                  <motion.li
+                    key={link.name}
+                    initial={{ opacity: 0, x: -14 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.35, delay: 0.05 + i * 0.04, ease: EASE }}
+                    className="border-b border-champagne/10 last:border-0"
                   >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </header>
+                    <a
+                      href={`#${link.id}`}
+                      onClick={() => setIsOpen(false)}
+                      aria-current={active === link.id ? "true" : undefined}
+                      className={`block label-uppercase py-4 transition-colors
+                        ${active === link.id ? "text-champagne" : "text-cream-warm/80 hover:text-champagne"}`}
+                    >
+                      {link.name}
+                    </a>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
     </>
   );
 }
