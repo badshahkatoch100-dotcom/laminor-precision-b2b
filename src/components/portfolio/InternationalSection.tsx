@@ -1,8 +1,11 @@
-import { Reveal } from "@/components/Reveal";
+import { motion, useReducedMotion } from "motion/react";
 import { SectionHeading } from "./SectionHeading";
+import { FadeIn, EASE } from "@/components/motion/Motion";
 import { countries, environments } from "@/data/cv";
 
 export function InternationalSection() {
+  const reduce = useReducedMotion();
+
   return (
     <section id="international" className="section-padding bg-burgundy">
       <div className="section-container">
@@ -15,35 +18,48 @@ export function InternationalSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
           <ul>
             {countries.map((country, index) => (
-              <Reveal
+              <FadeIn
                 as="li"
                 key={country.name}
-                delay={index * 60}
-                className="border-t border-champagne/20 py-7 last:border-b"
+                delay={index * 0.08}
+                className="group border-t border-champagne/20 py-7 last:border-b"
               >
-                <h3 className="heading-subsection text-cream">{country.name}</h3>
-                <p className="text-cream-warm/60 text-sm mt-2 leading-relaxed">
-                  {country.detail}
-                </p>
-              </Reveal>
+                <div className="flex items-baseline gap-5">
+                  <span className="label-uppercase tabular text-champagne/50 shrink-0">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="heading-subsection text-cream transition-colors duration-300 group-hover:text-champagne">
+                      {country.name}
+                    </h3>
+                    <p className="text-cream-warm/60 text-sm mt-2 leading-relaxed">
+                      {country.detail}
+                    </p>
+                  </div>
+                </div>
+              </FadeIn>
             ))}
           </ul>
 
           <div>
-            <Reveal delay={80}>
+            <FadeIn delay={0.08}>
               <h3 className="label-uppercase text-champagne mb-6">Environments</h3>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-champagne/20 border border-champagne/20">
-                {environments.map((env) => (
-                  <li
+                {environments.map((env, i) => (
+                  <motion.li
                     key={env}
+                    initial={reduce ? false : { opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.05, ease: EASE }}
                     className="bg-burgundy px-6 py-7 text-cream-warm/85 text-[0.9375rem]
                                transition-colors duration-300 hover:text-champagne"
                   >
                     {env}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
-            </Reveal>
+            </FadeIn>
           </div>
         </div>
       </div>
