@@ -4,9 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* LAMINOR Design System
-   French patisserie meets modern minimalism
-   Colors: Deep burgundy, warm cream, champagne gold
+/* Deepak Yashwant Telang — Chef Portfolio Design System
+   Editorial luxury hospitality
+   Colors: deep burgundy, warm cream, champagne gold
+   Motion: fast 150-250ms · medium 300-500ms · large 600-900ms · hero 800-1200ms
 */
 
 @layer base {
@@ -60,6 +61,13 @@
     
     /* Spacing */
     --section-padding: clamp(4rem, 10vw, 8rem);
+
+    /* Motion tokens */
+    --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+    --dur-fast: 200ms;
+    --dur-medium: 400ms;
+    --dur-large: 750ms;
+    --dur-hero: 1000ms;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
