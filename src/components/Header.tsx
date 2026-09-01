@@ -112,32 +112,44 @@ export function Header() {
               </span>
             </a>
 
-            <ul className="hidden lg:flex items-center gap-7 xl:gap-9">
-              {navLinks.map((link) => {
-                const isActive = active === link.id;
-                return (
-                  <li key={link.name} className="relative">
-                    <a
-                      href={`#${link.id}`}
-                      aria-current={isActive ? "true" : undefined}
-                      className={`relative block label-uppercase py-2 transition-colors duration-300
-                        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne
-                        ${isActive ? "text-champagne" : "text-cream-warm/70 hover:text-cream"}`}
-                    >
-                      {link.name}
-                      {isActive && (
-                        <motion.span
-                          layoutId="nav-underline"
-                          aria-hidden="true"
-                          className="absolute left-0 right-0 -bottom-0.5 h-px bg-champagne"
-                          transition={{ duration: 0.4, ease: EASE }}
-                        />
-                      )}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
+            <div className="hidden lg:flex items-center gap-7 xl:gap-9">
+              <ul className="flex items-center gap-7 xl:gap-9">
+                {navLinks.map((link) => {
+                  const isActive = active === link.id;
+                  return (
+                    <li key={link.name} className="relative">
+                      <a
+                        href={`#${link.id}`}
+                        aria-current={isActive ? "true" : undefined}
+                        className={`relative block label-uppercase py-2 transition-colors duration-300
+                          focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne
+                          ${isActive ? "text-champagne" : "text-cream-warm/70 hover:text-cream"}`}
+                      >
+                        {link.name}
+                        {isActive && (
+                          <motion.span
+                            layoutId="nav-underline"
+                            aria-hidden="true"
+                            className="absolute left-0 right-0 -bottom-0.5 h-px bg-champagne"
+                            transition={{ duration: 0.4, ease: EASE }}
+                          />
+                        )}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <a
+                href={`mailto:${chef.email}`}
+                className="label-uppercase border border-champagne/50 text-champagne px-5 py-2.5
+                           transition-colors duration-300 hover:bg-champagne hover:text-burgundy
+                           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne"
+              >
+                Email
+              </a>
+            </div>
+
 
             <button
               onClick={() => setIsOpen((v) => !v)}
@@ -192,6 +204,24 @@ export function Header() {
                   </motion.li>
                 ))}
               </ul>
+
+              <div className="section-container pb-6 flex flex-col gap-3">
+                <a
+                  href={`mailto:${chef.email}`}
+                  onClick={() => setIsOpen(false)}
+                  className="btn-gold w-full"
+                >
+                  Email Deepak
+                </a>
+                <a
+                  href={`tel:+91${chef.phones[0].replace(/\s/g, "")}`}
+                  onClick={() => setIsOpen(false)}
+                  className="btn-ghost-light w-full tabular"
+                >
+                  Call {chef.phones[0]}
+                </a>
+              </div>
+
             </motion.div>
           )}
         </AnimatePresence>
