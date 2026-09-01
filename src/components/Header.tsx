@@ -204,6 +204,24 @@ export function Header() {
                   </motion.li>
                 ))}
               </ul>
+
+              <div className="section-container pb-6 flex flex-col gap-3">
+                <a
+                  href={`mailto:${chef.email}`}
+                  onClick={() => setIsOpen(false)}
+                  className="btn-gold w-full"
+                >
+                  Email Deepak
+                </a>
+                <a
+                  href={`tel:+91${chef.phones[0].replace(/\s/g, "")}`}
+                  onClick={() => setIsOpen(false)}
+                  className="btn-ghost-light w-full tabular"
+                >
+                  Call {chef.phones[0]}
+                </a>
+              </div>
+
             </motion.div>
           )}
         </AnimatePresence>
