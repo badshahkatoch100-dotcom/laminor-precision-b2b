@@ -77,7 +77,7 @@ export function HeroSection() {
       <div className="section-container relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Copy */}
-          <div className="lg:col-span-7 order-2 lg:order-1">
+          <div className="lg:col-span-7">
             <motion.span
               className="label-uppercase text-champagne block mb-6"
               {...rise(0.15)}
@@ -115,7 +115,7 @@ export function HeroSection() {
             />
 
             <motion.p
-              className="font-serif text-champagne-light text-2xl sm:text-[1.75rem] leading-snug"
+              className="font-serif text-champagne-light text-xl sm:text-2xl lg:text-[1.75rem] leading-snug"
               {...rise(0.78)}
             >
               {chef.role} <span className="text-cream-warm/40">—</span>{" "}
@@ -156,7 +156,7 @@ export function HeroSection() {
           </div>
 
           {/* Portrait */}
-          <div className="lg:col-span-5 order-1 lg:order-2">
+          <div className="lg:col-span-5">
             <motion.figure
               className="relative w-full max-w-[19rem] sm:max-w-[23rem] mx-auto lg:mx-0 lg:ml-auto m-0"
               style={{ x: reduce ? 0 : portraitX, y: reduce ? 0 : portraitY }}
