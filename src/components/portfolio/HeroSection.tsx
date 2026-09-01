@@ -200,7 +200,7 @@ export function HeroSection() {
                 className="label-uppercase text-cream-warm/45 mt-5 lg:text-right"
                 {...rise(1.15)}
               >
-                {chef.currentPosition.location}
+                Based in {chef.location}
               </motion.figcaption>
             </motion.figure>
           </div>
