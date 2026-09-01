@@ -78,9 +78,9 @@ export function TextReveal({
         {words.map((word, i) => (
           <span
             key={`${word}-${i}`}
-            className="inline-block overflow-hidden align-bottom"
-            style={{ paddingBottom: "0.08em" }}
+            className="inline-block overflow-hidden align-bottom pb-[0.22em] -mb-[0.22em]"
           >
+
             <motion.span
               className="inline-block"
               initial={{ y: "110%" }}
