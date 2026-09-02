@@ -3,15 +3,15 @@ export const chef = {
   role: "Professional Chef",
   disciplines: "Bakery • Pastry • Culinary Operations",
   currentPosition: {
-    title: "Chef",
-    org: "Chefair Flight Catering",
-    location: "Chhatrapati Shivaji International Airport, Mumbai",
+    title: "Professional Chef",
+    org: "International Culinary Development",
+    location: "Barcelona, Spain",
   },
   profile:
-    "A highly experienced chef with a strong background in bakery, pastry, and mass food production.",
+    "Internationally experienced chef with a strong background in bakery, pastry, flight catering, cruise operations, restaurant kitchens and high-volume food production. His career spans professional culinary environments in India, Kuwait and the United States, followed by further culinary development in Germany and Barcelona, where he has expanded his exposure to European, Spanish and Catalan cooking.",
   email: "deepak.telang123@gmail.com",
   phones: ["79776 53268", "75066 80001"],
-  location: "Mumbai, India",
+  location: "Barcelona, Spain",
 };
 
 export interface CareerEntry {
@@ -81,6 +81,13 @@ export const career: CareerEntry[] = [
     points: ["Assisted in the opening of Starbucks outlets in Mumbai"],
   },
   {
+    period: "",
+    org: "Chefair Flight Catering",
+    location: "Chhatrapati Shivaji International Airport, Mumbai",
+    title: "Chef",
+    points: ["Flight catering production and kitchen operations"],
+  },
+  {
     period: "2012 — 2015",
     org: "Café Coco",
     location: "Kuwait",
@@ -90,12 +97,26 @@ export const career: CareerEntry[] = [
       "Pre-opening team member",
     ],
   },
+];
+
+export interface DevelopmentEntry {
+  period: string;
+  place: string;
+  note: string;
+  current?: boolean;
+}
+
+/* Practical culinary development — distinct from documented employment */
+export const development: DevelopmentEntry[] = [
   {
-    period: "Current",
-    org: "Chefair Flight Catering",
-    location: "Chhatrapati Shivaji International Airport, Mumbai",
-    title: "Chef",
-    points: ["Flight catering production and kitchen operations"],
+    period: "Jul 2025 — Dec 2025",
+    place: "Germany",
+    note: "Practical culinary exposure in a professional restaurant environment, with further development of European culinary knowledge and kitchen experience.",
+  },
+  {
+    period: "Jan 2026 — Present",
+    place: "Barcelona, Spain",
+    note: "Continued practical culinary development in Barcelona, with a focus on Spanish and Catalan culinary traditions, including practical exposure to pintxos, Spanish cooking techniques, ingredients and professional restaurant kitchen practices.",
     current: true,
   },
 ];
@@ -110,6 +131,14 @@ export const expertise = [
   { title: "Costing & Recipe Standardization", note: "Cost control and consistent yields" },
   { title: "Vendor Management", note: "Vendor development and supply coordination" },
   { title: "Leadership", note: "Team communication and supervision" },
+  {
+    title: "Spanish & Catalan Culinary Development",
+    note: "Practical exposure to pintxos, Spanish cooking techniques and ingredients",
+  },
+  {
+    title: "European Restaurant Practices",
+    note: "Developing knowledge of professional restaurant kitchen practices in Germany and Spain",
+  },
 ];
 
 export const skills = [
@@ -127,6 +156,8 @@ export const countries = [
   { name: "India", detail: "Hotels, luxury train, flight kitchens, restaurants" },
   { name: "Kuwait", detail: "Café Coco — pre-opening bakery & pastry" },
   { name: "USA", detail: "Princess Cruise Lines, Sitar Indian Restaurant" },
+  { name: "Germany", detail: "Practical culinary development in a restaurant environment" },
+  { name: "Spain", detail: "Ongoing culinary development in Barcelona — Spanish & Catalan traditions" },
 ];
 
 export const environments = [
