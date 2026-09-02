@@ -11,7 +11,7 @@ export function InternationalSection() {
       <div className="section-container">
         <SectionHeading
           eyebrow="International Experience"
-          title="Three countries. Six hospitality environments."
+          title="Five countries. Six hospitality environments."
           tone="light"
         />
 

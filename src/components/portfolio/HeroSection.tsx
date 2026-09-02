@@ -127,7 +127,8 @@ export function HeroSection() {
               {...rise(0.9)}
             >
               Flight catering, cruise lines, international restaurants, luxury rail
-              and hotels — high-volume kitchens across India, Kuwait and the USA.
+              and hotels — high-volume kitchens across India, Kuwait and the USA,
+              now continuing his culinary development in Barcelona.
             </motion.p>
 
             <motion.div
