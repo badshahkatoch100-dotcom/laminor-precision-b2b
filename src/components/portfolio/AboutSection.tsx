@@ -35,8 +35,8 @@ export function AboutSection() {
 
               <blockquote className="relative border-l-2 border-champagne pl-6 py-1">
                 <p className="font-serif text-xl md:text-2xl leading-snug text-foreground">
-                  Currently {chef.currentPosition.title} at{" "}
-                  {chef.currentPosition.org}.
+                  Currently based in Barcelona — continuing his international
+                  culinary development.
                 </p>
                 <footer className="text-sm text-muted-foreground mt-2">
                   {chef.currentPosition.location}

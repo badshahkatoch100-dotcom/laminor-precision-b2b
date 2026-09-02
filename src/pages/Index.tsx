@@ -18,8 +18,7 @@ const jsonLd = {
   jobTitle: chef.role,
   email: `mailto:${chef.email}`,
   telephone: chef.phones.map((p) => `+91${p.replace(/\s/g, "")}`),
-  address: { "@type": "PostalAddress", addressLocality: "Mumbai", addressCountry: "IN" },
-  worksFor: { "@type": "Organization", name: chef.currentPosition.org },
+  address: { "@type": "PostalAddress", addressLocality: "Barcelona", addressCountry: "ES" },
   alumniOf: { "@type": "CollegeOrUniversity", name: education.institute },
   knowsLanguage: languages.map((l) => l.name),
   hasOccupation: career.map((c) => ({
