@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
-import { chef } from "@/data/cv";
 import { EASE } from "@/components/motion/Motion";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const navLinks = [
-  { name: "Home", id: "home" },
-  { name: "About", id: "about" },
-  { name: "Experience", id: "experience" },
-  { name: "Expertise", id: "expertise" },
-  { name: "Achievements", id: "achievements" },
-  { name: "Certifications", id: "certifications" },
-  { name: "Contact", id: "contact" },
-];
+  { key: "home", id: "home" },
+  { key: "about", id: "about" },
+  { key: "experience", id: "experience" },
+  { key: "expertise", id: "expertise" },
+  { key: "achievements", id: "achievements" },
+  { key: "certifications", id: "certifications" },
+  { key: "contact", id: "contact" },
+] as const;
 
 export function Header() {
+  const { t, cv } = useI18n();
+  const { chef } = cv;
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
@@ -76,7 +79,7 @@ export function Header() {
                    focus:bg-champagne focus:text-burgundy focus:px-5 focus:py-3
                    focus:text-sm focus:font-medium focus:uppercase focus:tracking-[0.14em]"
       >
-        Skip to content
+        {t("common.skipToContent")}
       </a>
 
       <motion.header
@@ -90,7 +93,7 @@ export function Header() {
               : "bg-transparent border-b border-transparent"
           }`}
       >
-        <nav className="section-container" aria-label="Main">
+        <nav className="section-container" aria-label={t("nav.ariaMain")}>
           <div
             className={`flex items-center justify-between transition-all duration-500 ${
               scrolled ? "h-16" : "h-20 lg:h-24"
@@ -112,12 +115,12 @@ export function Header() {
               </span>
             </a>
 
-            <div className="hidden lg:flex items-center gap-7 xl:gap-9">
-              <ul className="flex items-center gap-7 xl:gap-9">
+            <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+              <ul className="flex items-center gap-6 xl:gap-8">
                 {navLinks.map((link) => {
                   const isActive = active === link.id;
                   return (
-                    <li key={link.name} className="relative">
+                    <li key={link.id} className="relative">
                       <a
                         href={`#${link.id}`}
                         aria-current={isActive ? "true" : undefined}
@@ -125,7 +128,7 @@ export function Header() {
                           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne
                           ${isActive ? "text-champagne" : "text-cream-warm/70 hover:text-cream"}`}
                       >
-                        {link.name}
+                        {t(`nav.${link.key}`)}
                         {isActive && (
                           <motion.span
                             layoutId="nav-underline"
@@ -140,27 +143,31 @@ export function Header() {
                 })}
               </ul>
 
+              <LanguageToggle />
+
               <a
                 href={`mailto:${chef.email}`}
                 className="label-uppercase border border-champagne/50 text-champagne px-5 py-2.5
                            transition-colors duration-300 hover:bg-champagne hover:text-burgundy
                            focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne"
               >
-                Email
+                {t("nav.emailCta")}
               </a>
             </div>
 
-
-            <button
-              onClick={() => setIsOpen((v) => !v)}
-              className="lg:hidden p-2 -mr-2 text-cream hover:text-champagne transition-colors
-                         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isOpen}
-              aria-controls="mobile-menu"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            <div className="flex items-center gap-3 lg:hidden">
+              <LanguageToggle />
+              <button
+                onClick={() => setIsOpen((v) => !v)}
+                className="p-2 -mr-2 text-cream hover:text-champagne transition-colors
+                           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                aria-label={isOpen ? t("nav.closeMenu") : t("nav.openMenu")}
+                aria-expanded={isOpen}
+                aria-controls="mobile-menu"
+              >
+                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </nav>
 
@@ -186,7 +193,7 @@ export function Header() {
               <ul className="section-container py-4 flex flex-col">
                 {navLinks.map((link, i) => (
                   <motion.li
-                    key={link.name}
+                    key={link.id}
                     initial={{ opacity: 0, x: -14 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.35, delay: 0.05 + i * 0.04, ease: EASE }}
@@ -199,7 +206,7 @@ export function Header() {
                       className={`block label-uppercase py-4 transition-colors
                         ${active === link.id ? "text-champagne" : "text-cream-warm/80 hover:text-champagne"}`}
                     >
-                      {link.name}
+                      {t(`nav.${link.key}`)}
                     </a>
                   </motion.li>
                 ))}
@@ -211,17 +218,16 @@ export function Header() {
                   onClick={() => setIsOpen(false)}
                   className="btn-gold w-full"
                 >
-                  Email Deepak
+                  {t("nav.emailChef")}
                 </a>
                 <a
                   href={`tel:+91${chef.phones[0].replace(/\s/g, "")}`}
                   onClick={() => setIsOpen(false)}
                   className="btn-ghost-light w-full tabular"
                 >
-                  Call {chef.phones[0]}
+                  {t("nav.call", { phone: chef.phones[0] })}
                 </a>
               </div>
-
             </motion.div>
           )}
         </AnimatePresence>

@@ -1,6 +1,9 @@
-import { chef } from "@/data/cv";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export function Footer() {
+  const { t, cv } = useI18n();
+  const { chef } = cv;
+
   return (
     <footer className="bg-burgundy border-t border-champagne/20 text-cream-warm">
       <div className="section-container py-12">
@@ -27,7 +30,10 @@ export function Footer() {
           </div>
         </div>
         <p className="text-cream-warm/40 text-xs mt-10">
-          © {new Date().getFullYear()} {chef.name}. All rights reserved.
+          {t("footer.rights", {
+            year: new Date().getFullYear(),
+            name: chef.name,
+          })}
         </p>
       </div>
     </footer>
