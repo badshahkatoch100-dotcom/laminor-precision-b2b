@@ -1,42 +1,27 @@
 import { motion, useReducedMotion } from "motion/react";
 import { SectionHeading } from "./SectionHeading";
 import { FadeIn, EASE } from "@/components/motion/Motion";
-import { chef, skills } from "@/data/cv";
-
-const highlights = [
-  "Bakery",
-  "Pastry",
-  "Mass Food Production",
-  "Kitchen Operations",
-  "Food Safety",
-  "Cost Management",
-];
+import { useI18n } from "@/i18n/I18nProvider";
 
 export function AboutSection() {
   const reduce = useReducedMotion();
+  const { t, d, cv } = useI18n();
+  const { chef, skills } = cv;
+  const highlights = d.about.highlights;
 
   return (
     <section id="about" className="section-padding bg-cream">
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20">
           <div className="lg:col-span-6">
-            <SectionHeading
-              eyebrow="Professional Profile"
-              title="A career built around craft, precision and scale."
-            />
+            <SectionHeading eyebrow={t("about.eyebrow")} title={t("about.title")} />
             <FadeIn delay={0.08} className="space-y-6">
               <p className="text-body text-foreground">{chef.profile}</p>
-              <p className="text-body text-muted-foreground">
-                His work spans flight kitchens, cruise operations, international
-                restaurants, luxury train hospitality, hotels and retail food
-                operations — environments where consistency, food safety and volume
-                are non-negotiable.
-              </p>
+              <p className="text-body text-muted-foreground">{t("about.body")}</p>
 
               <blockquote className="relative border-l-2 border-champagne pl-6 py-1">
                 <p className="font-serif text-xl md:text-2xl leading-snug text-foreground">
-                  Currently based in Barcelona — continuing his international
-                  culinary development.
+                  {t("about.quote")}
                 </p>
                 <footer className="text-sm text-muted-foreground mt-2">
                   {chef.currentPosition.location}
@@ -48,7 +33,7 @@ export function AboutSection() {
           <div className="lg:col-span-6">
             <FadeIn delay={0.12}>
               <h3 className="label-uppercase text-muted-foreground mb-5">
-                Core Disciplines
+                {t("about.coreDisciplines")}
               </h3>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border border border-border">
                 {highlights.map((item, i) => (
@@ -71,7 +56,9 @@ export function AboutSection() {
             </FadeIn>
 
             <FadeIn delay={0.18} className="mt-12">
-              <h3 className="label-uppercase text-muted-foreground mb-5">Key Skills</h3>
+              <h3 className="label-uppercase text-muted-foreground mb-5">
+                {t("about.keySkills")}
+              </h3>
               <ul className="flex flex-wrap gap-2">
                 {skills.map((skill, i) => (
                   <motion.li
