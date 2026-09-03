@@ -3,23 +3,25 @@ import { ChevronDown, ArrowRight } from "lucide-react";
 import { motion, useReducedMotion, useSpring, useTransform } from "motion/react";
 import chefPortrait from "@/assets/chef-portrait.png";
 import heroBg from "@/assets/hero-bg.jpg";
-import { chef, career, countries, environments } from "@/data/cv";
 import { EASE, Magnetic } from "@/components/motion/Motion";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const nameLines = ["Deepak", "Yashwant", "Telang"];
-
-/* Derived strictly from the CV data — no invented figures. */
-const firstYear = career[0].period.slice(0, 4);
-const facts = [
-  { value: firstYear, label: "In kitchens since" },
-  { value: String(countries.length), label: "Countries worked in" },
-  { value: String(environments.length), label: "Hospitality environments" },
-  { value: String(career.length), label: "Documented roles" },
-];
 
 export function HeroSection() {
   const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
+  const { t, cv, formatNumber } = useI18n();
+  const { chef, career, countries, environments } = cv;
+
+  /* Derived strictly from the CV data — no invented figures. */
+  const firstYear = career[0].period.slice(0, 4);
+  const facts = [
+    { value: firstYear, label: t("hero.factSince") },
+    { value: formatNumber(countries.length), label: t("hero.factCountries") },
+    { value: formatNumber(environments.length), label: t("hero.factEnvironments") },
+    { value: formatNumber(career.length), label: t("hero.factRoles") },
+  ];
 
   const spring = { stiffness: 90, damping: 20, mass: 0.6 };
   const mx = useSpring(0, spring);
@@ -126,9 +128,7 @@ export function HeroSection() {
               className="text-body text-cream-warm/70 max-w-lg mt-6"
               {...rise(0.9)}
             >
-              Flight catering, cruise lines, international restaurants, luxury rail
-              and hotels — high-volume kitchens across India, Kuwait and the USA,
-              now continuing his culinary development in Barcelona.
+              {t("hero.intro")}
             </motion.p>
 
             <motion.div
@@ -137,7 +137,7 @@ export function HeroSection() {
             >
               <Magnetic>
                 <a href="#experience" className="btn-gold group w-full sm:w-auto">
-                  View My Experience
+                  {t("hero.ctaExperience")}
                   <ArrowRight
                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                     strokeWidth={1.5}
@@ -150,7 +150,7 @@ export function HeroSection() {
                   href={`mailto:${chef.email}`}
                   className="btn-ghost-light w-full sm:w-auto"
                 >
-                  Email Deepak
+                  {t("hero.ctaEmail")}
                 </a>
               </Magnetic>
             </motion.div>
@@ -172,7 +172,7 @@ export function HeroSection() {
               <div className="relative overflow-hidden aspect-[4/5] bg-burgundy-light">
                 <motion.img
                   src={chefPortrait}
-                  alt={`Portrait of ${chef.name}, professional chef, in chef whites`}
+                  alt={t("hero.portraitAlt", { name: chef.name })}
                   className="w-full h-full object-cover object-[52%_18%]"
                   width={896}
                   height={1200}
@@ -201,7 +201,7 @@ export function HeroSection() {
                 className="label-uppercase text-cream-warm/45 mt-5 lg:text-right"
                 {...rise(1.15)}
               >
-                Based in {chef.location}
+                {t("hero.basedIn", { location: chef.location })}
               </motion.figcaption>
             </motion.figure>
           </div>
@@ -235,7 +235,7 @@ export function HeroSection() {
 
         <motion.a
           href="#about"
-          aria-label="Scroll to professional profile"
+          aria-label={t("hero.scrollAria")}
           className="hidden lg:inline-flex mt-8 mb-10 items-center gap-3
                      text-cream-warm/45 hover:text-champagne transition-colors label-uppercase
                      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne"
@@ -243,7 +243,7 @@ export function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.4, ease: EASE }}
         >
-          Scroll
+          {t("hero.scroll")}
           <ChevronDown className="w-4 h-4 motion-safe:animate-bounce" strokeWidth={1.5} />
         </motion.a>
       </motion.div>
