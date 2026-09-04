@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { SectionHeading } from "./SectionHeading";
 import { FadeIn } from "@/components/motion/Motion";
-import { certifications, education } from "@/data/cv";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export function CertificationsSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const { t, cv } = useI18n();
+  const { certifications, education } = cv;
 
   return (
     <section id="certifications" className="section-padding bg-cream-warm">
       <div className="section-container">
         <SectionHeading
-          eyebrow="Certifications & Training"
-          title="Trained to international safety and management standards."
+          eyebrow={t("certifications.eyebrow")}
+          title={t("certifications.title")}
         />
 
         <ul className="border-t border-border max-w-5xl">
@@ -67,15 +69,15 @@ export function CertificationsSection() {
         {/* Education */}
         <div id="education" className="mt-16 lg:mt-20 pt-14 border-t border-border">
           <FadeIn>
-            <span className="label-uppercase text-champagne mb-5 block">Education</span>
+            <span className="label-uppercase text-champagne mb-5 block">
+              {t("certifications.education")}
+            </span>
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-10">
               <span className="font-serif text-3xl text-champagne tabular shrink-0">
                 {education.year}
               </span>
               <div>
-                <h3 className="heading-subsection text-foreground">
-                  {education.degree}
-                </h3>
+                <h3 className="heading-subsection text-foreground">{education.degree}</h3>
                 <p className="text-muted-foreground mt-2">{education.institute}</p>
               </div>
             </div>
