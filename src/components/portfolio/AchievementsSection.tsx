@@ -1,18 +1,17 @@
 import { motion, useReducedMotion } from "motion/react";
 import { SectionHeading } from "./SectionHeading";
 import { FadeIn, EASE } from "@/components/motion/Motion";
-import { achievements } from "@/data/cv";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export function AchievementsSection() {
   const reduce = useReducedMotion();
+  const { t, cv, formatNumber } = useI18n();
+  const { achievements } = cv;
 
   return (
     <section id="achievements" className="section-padding bg-cream">
       <div className="section-container">
-        <SectionHeading
-          eyebrow="Achievements"
-          title="Recognition earned on the line."
-        />
+        <SectionHeading eyebrow={t("achievements.eyebrow")} title={t("achievements.title")} />
 
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12 lg:gap-x-20">
           {achievements.map((item, index) => (
@@ -28,7 +27,7 @@ export function AchievementsSection() {
                   className="font-serif text-5xl lg:text-6xl leading-none tabular text-champagne/35
                              transition-colors duration-500 group-hover:text-champagne/70"
                 >
-                  {String(index + 1).padStart(2, "0")}
+                  {formatNumber(index + 1, { minimumIntegerDigits: 2 })}
                 </span>
                 <div className="pt-1">
                   <h3 className="heading-subsection text-foreground text-balance">

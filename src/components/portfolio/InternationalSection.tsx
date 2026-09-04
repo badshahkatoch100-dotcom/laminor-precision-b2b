@@ -1,17 +1,19 @@
 import { motion, useReducedMotion } from "motion/react";
 import { SectionHeading } from "./SectionHeading";
 import { FadeIn, EASE } from "@/components/motion/Motion";
-import { countries, environments } from "@/data/cv";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export function InternationalSection() {
   const reduce = useReducedMotion();
+  const { t, cv, formatNumber } = useI18n();
+  const { countries, environments } = cv;
 
   return (
     <section id="international" className="section-padding bg-burgundy">
       <div className="section-container">
         <SectionHeading
-          eyebrow="International Experience"
-          title="Five countries. Six hospitality environments."
+          eyebrow={t("international.eyebrow")}
+          title={t("international.title")}
           tone="light"
         />
 
@@ -26,7 +28,7 @@ export function InternationalSection() {
               >
                 <div className="flex items-baseline gap-5">
                   <span className="label-uppercase tabular text-champagne/50 shrink-0">
-                    {String(index + 1).padStart(2, "0")}
+                    {formatNumber(index + 1, { minimumIntegerDigits: 2 })}
                   </span>
                   <div>
                     <h3 className="heading-subsection text-cream transition-colors duration-300 group-hover:text-champagne">
@@ -43,7 +45,9 @@ export function InternationalSection() {
 
           <div>
             <FadeIn delay={0.08}>
-              <h3 className="label-uppercase text-champagne mb-6">Environments</h3>
+              <h3 className="label-uppercase text-champagne mb-6">
+                {t("international.environments")}
+              </h3>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-champagne/20 border border-champagne/20">
                 {environments.map((env, i) => (
                   <motion.li

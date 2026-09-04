@@ -2,9 +2,11 @@ import { useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useSpring } from "motion/react";
 import { SectionHeading } from "./SectionHeading";
 import { FadeIn, EASE } from "@/components/motion/Motion";
-import { career, development, countries, environments, chef } from "@/data/cv";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export function CareerSection() {
+  const { t, cv, formatNumber } = useI18n();
+  const { career, development, countries, environments, chef } = cv;
   const entries = [...career].reverse();
   const developmentEntries = [...development].reverse();
   const reduce = useReducedMotion();
@@ -28,9 +30,9 @@ export function CareerSection() {
     <section id="experience" className="section-padding bg-cream-warm">
       <div className="section-container">
         <SectionHeading
-          eyebrow="Career Journey"
-          title="Kitchens on the ground, at altitude and at sea."
-          intro="A documented progression through bakery, pastry and high-volume production across India, Kuwait and the USA — followed by ongoing culinary development in Europe. Currently based in Barcelona."
+          eyebrow={t("career.eyebrow")}
+          title={t("career.title")}
+          intro={t("career.intro")}
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
@@ -40,14 +42,20 @@ export function CareerSection() {
               <FadeIn distance={16}>
                 <div className="border-t border-border pt-6">
                   <span className="label-uppercase text-muted-foreground">
-                    The route so far
+                    {t("career.routeSoFar")}
                   </span>
                   <ul className="mt-6 space-y-5">
                     {[
-                      { k: "Documented roles", v: String(career.length) },
-                      { k: "Countries", v: countries.map((c) => c.name).join(" · ") },
-                      { k: "Environments", v: String(environments.length) },
-                      { k: "Currently based in", v: chef.location },
+                      { k: t("career.documentedRoles"), v: formatNumber(career.length) },
+                      {
+                        k: t("career.countries"),
+                        v: countries.map((c) => c.name).join(" · "),
+                      },
+                      {
+                        k: t("career.environments"),
+                        v: formatNumber(environments.length),
+                      },
+                      { k: t("career.currentlyBasedIn"), v: chef.location },
                     ].map((row) => (
                       <li
                         key={row.k}
@@ -86,7 +94,7 @@ export function CareerSection() {
             {/* Group: International Culinary Development */}
             <FadeIn distance={12}>
               <h3 className="label-uppercase text-champagne pl-8 sm:pl-12 mb-8">
-                International Culinary Development
+                {t("career.developmentGroup")}
               </h3>
             </FadeIn>
 
@@ -137,7 +145,7 @@ export function CareerSection() {
                           />
                           {entry.current && (
                             <span className="label-uppercase text-champagne">
-                              Current chapter
+                              {t("career.currentChapter")}
                             </span>
                           )}
                         </div>
@@ -159,7 +167,7 @@ export function CareerSection() {
             <FadeIn distance={12} className="relative pl-8 sm:pl-12 pb-8">
               <div className="flex items-center gap-4 border-t border-border pt-8">
                 <h3 className="label-uppercase text-muted-foreground">
-                  Documented Professional Experience
+                  {t("career.documentedGroup")}
                 </h3>
                 <span aria-hidden="true" className="h-px flex-1 bg-border" />
               </div>

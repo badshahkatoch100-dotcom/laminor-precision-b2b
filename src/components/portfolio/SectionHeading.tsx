@@ -26,6 +26,7 @@ export function SectionHeading({
       </FadeIn>
 
       <TextReveal
+        key={title}
         text={title}
         as="h2"
         className={`heading-section max-w-3xl ${
