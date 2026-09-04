@@ -101,7 +101,7 @@ export function Header() {
           >
             <a
               href="#home"
-              className="group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne"
+              className="group shrink-0 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne"
             >
               <span className="block font-serif text-lg leading-tight tracking-wide text-cream transition-colors group-hover:text-champagne">
                 Deepak Y. Telang
@@ -115,8 +115,8 @@ export function Header() {
               </span>
             </a>
 
-            <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-              <ul className="flex items-center gap-6 xl:gap-8">
+            <div className="hidden lg:flex items-center gap-4 xl:gap-8">
+              <ul className="flex items-center gap-4 xl:gap-7">
                 {navLinks.map((link) => {
                   const isActive = active === link.id;
                   return (
@@ -147,7 +147,7 @@ export function Header() {
 
               <a
                 href={`mailto:${chef.email}`}
-                className="label-uppercase border border-champagne/50 text-champagne px-5 py-2.5
+                className="hidden xl:inline-flex label-uppercase border border-champagne/50 text-champagne px-5 py-2.5
                            transition-colors duration-300 hover:bg-champagne hover:text-burgundy
                            focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne"
               >
