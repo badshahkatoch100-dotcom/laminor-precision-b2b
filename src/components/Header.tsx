@@ -101,7 +101,7 @@ export function Header() {
           >
             <a
               href="#home"
-              className="group shrink-0 whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne"
+              className="group shrink-0 whitespace-nowrap pr-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne"
             >
               <span className="block font-serif text-lg leading-tight tracking-wide text-cream transition-colors group-hover:text-champagne">
                 Deepak Y. Telang
@@ -147,7 +147,7 @@ export function Header() {
 
               <a
                 href={`mailto:${chef.email}`}
-                className="hidden xl:inline-flex label-uppercase border border-champagne/50 text-champagne px-5 py-2.5
+                className="hidden 2xl:inline-flex label-uppercase border border-champagne/50 text-champagne px-5 py-2.5
                            transition-colors duration-300 hover:bg-champagne hover:text-burgundy
                            focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne"
               >
