@@ -60,7 +60,7 @@ export function Header() {
   useEffect(() => {
     if (!isOpen) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setIsOpen(false);
-    const onResize = () => window.innerWidth >= 1024 && setIsOpen(false);
+    const onResize = () => window.innerWidth >= 1280 && setIsOpen(false);
     document.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
     document.body.style.overflow = "hidden";
@@ -115,8 +115,8 @@ export function Header() {
               </span>
             </a>
 
-            <div className="hidden lg:flex items-center gap-4 xl:gap-8">
-              <ul className="flex items-center gap-4 xl:gap-7">
+            <div className="hidden xl:flex items-center gap-5 2xl:gap-8">
+              <ul className="flex items-center gap-5 2xl:gap-7">
                 {navLinks.map((link) => {
                   const isActive = active === link.id;
                   return (
@@ -155,7 +155,7 @@ export function Header() {
               </a>
             </div>
 
-            <div className="flex items-center gap-3 lg:hidden">
+            <div className="flex items-center gap-3 xl:hidden">
               <LanguageToggle />
               <button
                 onClick={() => setIsOpen((v) => !v)}
@@ -187,7 +187,7 @@ export function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.3, ease: EASE }}
-              className="lg:hidden absolute top-full left-0 right-0 bg-burgundy border-t border-champagne/20
+              className="xl:hidden absolute top-full left-0 right-0 bg-burgundy border-t border-champagne/20
                          max-h-[calc(100vh-4rem)] overflow-y-auto"
             >
               <ul className="section-container py-4 flex flex-col">
