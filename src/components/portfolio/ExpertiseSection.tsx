@@ -2,19 +2,18 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { SectionHeading } from "./SectionHeading";
 import { FadeIn, EASE } from "@/components/motion/Motion";
-import { expertise } from "@/data/cv";
+import { useI18n } from "@/i18n/I18nProvider";
 
 export function ExpertiseSection() {
   const [open, setOpen] = useState<number | null>(0);
   const reduce = useReducedMotion();
+  const { t, cv, formatNumber } = useI18n();
+  const { expertise } = cv;
 
   return (
     <section id="expertise" className="section-padding bg-cream">
       <div className="section-container">
-        <SectionHeading
-          eyebrow="Culinary Expertise"
-          title="Disciplines practised daily, at scale."
-        />
+        <SectionHeading eyebrow={t("expertise.eyebrow")} title={t("expertise.title")} />
 
         <ul className="border-t border-border max-w-5xl">
           {expertise.map((item, index) => {
@@ -37,7 +36,7 @@ export function ExpertiseSection() {
                              focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                 >
                   <span className="label-uppercase tabular text-champagne/70 shrink-0 w-8">
-                    {String(index + 1).padStart(2, "0")}
+                    {formatNumber(index + 1, { minimumIntegerDigits: 2 })}
                   </span>
 
                   <span className="flex-1">
