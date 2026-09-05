@@ -513,3 +513,53 @@
     text-decoration: none !important;
   }
 }
+
+@media print {
+  /* Decorative absolutely-positioned overlays (image reveals, gradients,
+     background plates) would otherwise paint solid blocks on paper. */
+  [aria-hidden="true"][class*="absolute"],
+  [aria-hidden="true"][class*="inset"] {
+    display: none !important;
+  }
+
+  /* Screen-only calls to action */
+  .btn-gold,
+  .btn-ghost-light,
+  .btn-outline,
+  .btn-primary,
+  a[href^="#"],
+  button {
+    display: none !important;
+  }
+
+  #home {
+    background: #fff !important;
+    padding-bottom: 6mm !important;
+  }
+  #home figure {
+    max-width: 52mm !important;
+    margin-left: auto !important;
+  }
+  #home img {
+    border: 0.5pt solid hsl(var(--border));
+  }
+  #home .heading-display {
+    font-size: 24pt !important;
+  }
+  #home dt.sr-only {
+    display: block !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    clip: auto !important;
+    clip-path: none !important;
+    white-space: normal !important;
+    font-size: 7.5pt !important;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground)) !important;
+  }
+  #home dl [class*="text-cream"] {
+    color: hsl(var(--muted-foreground)) !important;
+  }
+}
