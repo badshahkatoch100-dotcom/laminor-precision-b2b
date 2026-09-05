@@ -3,7 +3,7 @@ import { FadeIn, TextReveal, Magnetic } from "@/components/motion/Motion";
 import { useI18n } from "@/i18n/I18nProvider";
 import { ExportControls } from "@/components/ExportControls";
 
-const telHref = (phone: string) => `tel:+91${phone.replace(/\s/g, "")}`;
+const telHref = (phone: string) => `tel:${phone.replace(/\s/g, "")}`;
 
 const linkClass =
   "text-cream hover:text-champagne transition-colors break-words " +

@@ -23,7 +23,7 @@ const Index = () => {
     name: chef.name,
     jobTitle: chef.role,
     email: `mailto:${chef.email}`,
-    telephone: chef.phones.map((p) => `+91${p.replace(/\s/g, "")}`),
+    telephone: chef.phones.map((p) => p.replace(/\s/g, "")),
     address: {
       "@type": "PostalAddress",
       addressLocality: "Barcelona",
