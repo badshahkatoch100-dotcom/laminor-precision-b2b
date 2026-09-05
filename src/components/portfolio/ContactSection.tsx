@@ -1,6 +1,7 @@
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { FadeIn, TextReveal, Magnetic } from "@/components/motion/Motion";
 import { useI18n } from "@/i18n/I18nProvider";
+import { ExportControls } from "@/components/ExportControls";
 
 const telHref = (phone: string) => `tel:+91${phone.replace(/\s/g, "")}`;
 
@@ -82,6 +83,13 @@ export function ContactSection() {
               />
             </a>
           </Magnetic>
+        </FadeIn>
+
+        <FadeIn delay={0.24} className="mt-10 max-w-md">
+          <span className="label-uppercase text-cream-warm/50 block mb-4">
+            {t("export.groupLabel")}
+          </span>
+          <ExportControls variant="stacked" tone="light" />
         </FadeIn>
       </div>
     </section>
