@@ -85,7 +85,7 @@ export function ContactSection() {
           </Magnetic>
         </FadeIn>
 
-        <FadeIn delay={0.24} className="mt-10 max-w-md">
+        <FadeIn delay={0.24} className="mt-10 max-w-md no-print">
           <span className="label-uppercase text-cream-warm/50 block mb-4">
             {t("export.groupLabel")}
           </span>

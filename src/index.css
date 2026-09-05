@@ -561,3 +561,10 @@
     color: hsl(var(--muted-foreground)) !important;
   }
 }
+
+@media print {
+  /* Start the written CV on a fresh page after the cover block. */
+  #about {
+    break-before: page;
+  }
+}
