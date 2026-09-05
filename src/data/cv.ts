@@ -10,7 +10,7 @@ export const chef = {
   profile:
     "Internationally experienced chef with a strong background in bakery, pastry, flight catering, cruise operations, restaurant kitchens and high-volume food production. His career spans professional culinary environments in India, Kuwait and the United States, followed by further culinary development in Germany and Barcelona, where he has expanded his exposure to European, Spanish and Catalan cooking.",
   email: "deepak.telang123@gmail.com",
-  phones: ["79776 53268", "75066 80001"],
+  phones: ["+34 623 58 40 76"],
   location: "Barcelona, Spain",
 };
 

@@ -20,7 +20,7 @@ export const chefEs = {
   profile:
     "Chef con experiencia internacional y una sólida trayectoria en panadería, pastelería, catering aéreo, operaciones en cruceros, cocinas de restaurante y producción alimentaria de gran volumen. Su carrera abarca entornos culinarios profesionales en India, Kuwait y Estados Unidos, seguidos de un desarrollo culinario adicional en Alemania y Barcelona, donde ha ampliado su contacto con la cocina europea, española y catalana.",
   email: "deepak.telang123@gmail.com",
-  phones: ["79776 53268", "75066 80001"],
+  phones: ["+34 623 58 40 76"],
   location: "Barcelona, España",
 };
 

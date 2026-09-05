@@ -224,7 +224,7 @@ export function Header() {
                   {t("nav.emailChef")}
                 </a>
                 <a
-                  href={`tel:+91${chef.phones[0].replace(/\s/g, "")}`}
+                  href={`tel:${chef.phones[0].replace(/\s/g, "")}`}
                   onClick={() => setIsOpen(false)}
                   className="btn-ghost-light w-full tabular"
                 >

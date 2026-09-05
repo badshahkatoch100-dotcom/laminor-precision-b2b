@@ -22,7 +22,7 @@ export function Footer() {
               {chef.email}
             </a>
             <a
-              href={`tel:+91${chef.phones[0].replace(/\s/g, "")}`}
+              href={`tel:${chef.phones[0].replace(/\s/g, "")}`}
               className="text-cream-warm/70 hover:text-champagne transition-colors"
             >
               {chef.phones[0]}
