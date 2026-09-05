@@ -267,7 +267,7 @@
 @media print {
   @page {
     size: A4 portrait;
-    margin: 16mm 14mm 18mm;
+    margin: 16mm 14mm 22mm;
   }
 
   html,
@@ -343,7 +343,7 @@
     display: flex !important;
     justify-content: space-between;
     position: fixed;
-    bottom: -12mm;
+    bottom: 0;
     left: 0;
     right: 0;
     font-size: 7.5pt;
@@ -502,6 +502,17 @@
     position: fixed !important;
   }
 
+  ul[class*="gap-px"],
+  div[class*="gap-px"] {
+    gap: 0 !important;
+    background: transparent !important;
+  }
+  ul[class*="gap-px"] > *,
+  div[class*="gap-px"] > * {
+    border: 0.5pt solid hsl(var(--border)) !important;
+    margin: -0.25pt 0 0 -0.25pt;
+  }
+
   img {
     max-width: 100% !important;
     height: auto !important;
@@ -545,19 +556,6 @@
   }
   #home .heading-display {
     font-size: 24pt !important;
-  }
-  #home dt.sr-only {
-    display: block !important;
-    position: static !important;
-    width: auto !important;
-    height: auto !important;
-    clip: auto !important;
-    clip-path: none !important;
-    white-space: normal !important;
-    font-size: 7.5pt !important;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: hsl(var(--muted-foreground)) !important;
   }
   #home dl [class*="text-cream"] {
     color: hsl(var(--muted-foreground)) !important;
