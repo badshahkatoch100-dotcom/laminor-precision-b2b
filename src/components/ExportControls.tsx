@@ -37,7 +37,7 @@ export function ExportControls({
         <button
           type="button"
           onClick={() => run("print")}
-          className={tone === "light" ? "btn-ghost-light w-full" : "btn-ghost w-full"}
+          className={tone === "light" ? "btn-ghost-light w-full" : "btn-outline w-full"}
         >
           {t("export.print")}
         </button>
