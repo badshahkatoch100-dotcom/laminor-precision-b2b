@@ -9,6 +9,7 @@ import { AchievementsSection } from "@/components/portfolio/AchievementsSection"
 import { CertificationsSection } from "@/components/portfolio/CertificationsSection";
 import { LanguagesSection } from "@/components/portfolio/LanguagesSection";
 import { ContactSection } from "@/components/portfolio/ContactSection";
+import { PrintDocument } from "@/components/PrintDocument";
 import { useI18n } from "@/i18n/I18nProvider";
 
 const Index = () => {
@@ -43,6 +44,7 @@ const Index = () => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <PrintDocument />
       <Header />
       <main>
         <HeroSection />

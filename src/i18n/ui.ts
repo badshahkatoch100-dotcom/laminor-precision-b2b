@@ -105,6 +105,16 @@ export const en = {
       "For roles, consulting or collaboration in flight catering, hospitality and high-volume production kitchens.",
     cta: "Get In Touch",
   },
+  export: {
+    groupLabel: "Export this CV",
+    pdf: "Export PDF",
+    print: "Print",
+    pdfAria: "Export this CV as a PDF document",
+    printAria: "Open the print dialog for this CV",
+    pdfToast: "Preparing your PDF — choose \u201cSave as PDF\u201d in the dialog.",
+    printToast: "Opening the print dialog\u2026",
+    documentTitle: "{name} — Curriculum Vitae",
+  },
   footer: {
     rights: "© {year} {name}. All rights reserved.",
   },
@@ -223,6 +233,16 @@ export const es: Dictionary = {
     intro:
       "Para puestos, consultoría o colaboraciones en catering aéreo, hostelería y cocinas de producción de gran volumen.",
     cta: "Ponerse en contacto",
+  },
+  export: {
+    groupLabel: "Exportar este CV",
+    pdf: "Exportar PDF",
+    print: "Imprimir",
+    pdfAria: "Exportar este CV como documento PDF",
+    printAria: "Abrir el cuadro de impresión de este CV",
+    pdfToast: "Preparando tu PDF: elige \u201cGuardar como PDF\u201d en el cuadro de diálogo.",
+    printToast: "Abriendo el cuadro de impresión\u2026",
+    documentTitle: "{name} — Currículum vítae",
   },
   footer: {
     rights: "© {year} {name}. Todos los derechos reservados.",
