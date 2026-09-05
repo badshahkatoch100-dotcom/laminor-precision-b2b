@@ -256,3 +256,260 @@
   }
 }
 
+
+/* ------------------------------------------------------------------ */
+/*  Print / PDF export                                                 */
+/* ------------------------------------------------------------------ */
+.print-only {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 16mm 14mm 18mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    width: 100%;
+    font-size: 10.5pt;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    /* Neutralise scroll-triggered motion so nothing exports invisible. */
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    scroll-margin: 0 !important;
+  }
+
+  /* Interactive / chrome-only UI never prints. */
+  .no-print,
+  header.no-print,
+  nav[aria-label],
+  [data-sonner-toaster],
+  [role="tooltip"],
+  [data-radix-popper-content-wrapper],
+  .sr-only {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  /* Running document identity */
+  .print-masthead {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12mm;
+    border-bottom: 1pt solid hsl(var(--accent));
+    padding-bottom: 4mm;
+    margin-bottom: 8mm;
+  }
+  .print-masthead-name {
+    font-family: var(--font-serif);
+    font-size: 20pt;
+    line-height: 1.1;
+    color: hsl(var(--foreground));
+  }
+  .print-masthead-role {
+    font-size: 8pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+    margin-top: 1mm;
+  }
+  .print-masthead-meta {
+    text-align: right;
+    font-size: 8.5pt;
+    line-height: 1.5;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Repeats on every printed page in Chromium-based browsers. */
+  .print-runner {
+    display: flex !important;
+    justify-content: space-between;
+    position: fixed;
+    bottom: -12mm;
+    left: 0;
+    right: 0;
+    font-size: 7.5pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+    border-top: 0.5pt solid hsl(var(--border));
+    padding-top: 2mm;
+  }
+
+  main {
+    display: block;
+  }
+
+  /* Compact editorial rhythm for paper */
+  section {
+    padding-top: 8mm !important;
+    padding-bottom: 8mm !important;
+    min-height: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+    break-inside: auto;
+    page-break-inside: auto;
+    border-top: 0.5pt solid hsl(var(--border));
+  }
+  section:first-of-type {
+    border-top: 0;
+  }
+  section#home {
+    padding-top: 0 !important;
+  }
+
+  .section-container {
+    max-width: none !important;
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Dark sections invert to paper-friendly ink */
+  .bg-burgundy,
+  .bg-burgundy-light,
+  .bg-cream,
+  .bg-cream-warm,
+  .bg-background {
+    background: #fff !important;
+  }
+  .text-cream,
+  .text-cream-warm,
+  [class*="text-cream"] {
+    color: hsl(var(--foreground)) !important;
+  }
+  .text-champagne,
+  [class*="text-champagne"] {
+    color: hsl(38 60% 42%) !important;
+  }
+  [class*="border-champagne"] {
+    border-color: hsl(38 45% 60%) !important;
+  }
+  [class*="border-cream"] {
+    border-color: hsl(var(--border)) !important;
+  }
+
+  .heading-display {
+    font-size: 26pt !important;
+  }
+  .heading-section {
+    font-size: 17pt !important;
+  }
+  .heading-subsection {
+    font-size: 13pt !important;
+  }
+  .heading-card {
+    font-size: 11.5pt !important;
+  }
+  .text-body,
+  p,
+  li,
+  td,
+  th {
+    font-size: 10pt !important;
+    line-height: 1.5 !important;
+  }
+  .label-uppercase {
+    font-size: 7.5pt !important;
+  }
+
+  /* Intelligent pagination */
+  h1,
+  h2,
+  h3,
+  h4,
+  .heading-display,
+  .heading-section,
+  .heading-subsection,
+  .heading-card {
+    break-after: avoid-page;
+    page-break-after: avoid;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+  li,
+  tr,
+  blockquote,
+  figure,
+  img,
+  dl,
+  .card,
+  [class*="border"] > article {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  /* Tables flow across pages with repeated headers */
+  table {
+    width: 100% !important;
+    table-layout: fixed;
+    border-collapse: collapse;
+    break-inside: auto;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tfoot {
+    display: table-footer-group;
+  }
+  th,
+  td {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    padding: 2mm 3mm;
+    border-bottom: 0.5pt solid hsl(var(--border));
+    text-align: left;
+    vertical-align: top;
+  }
+
+  /* Grids collapse gracefully; nothing clipped horizontally */
+  [class*="grid-cols"] {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6mm !important;
+  }
+  .overflow-hidden,
+  .overflow-x-auto,
+  .overflow-y-auto {
+    overflow: visible !important;
+  }
+  [class*="max-h-"] {
+    max-height: none !important;
+  }
+  .fixed,
+  .sticky {
+    position: static !important;
+  }
+  .print-runner {
+    position: fixed !important;
+  }
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    break-inside: avoid;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+}

@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
 import { EASE } from "@/components/motion/Motion";
 import { LanguageToggle } from "@/components/LanguageToggle";
+import { ExportControls } from "@/components/ExportControls";
 import { useI18n } from "@/i18n/I18nProvider";
 
 const navLinks = [
@@ -86,7 +87,7 @@ export function Header() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,border-color,height] duration-500
+        className={`no-print fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,border-color,height] duration-500
           ${
             scrolled || isOpen
               ? "bg-burgundy/95 backdrop-blur-md shadow-elevated border-b border-champagne/15"
@@ -144,6 +145,8 @@ export function Header() {
               </ul>
 
               <LanguageToggle />
+
+              <ExportControls />
 
               <a
                 href={`mailto:${chef.email}`}
@@ -227,6 +230,11 @@ export function Header() {
                 >
                   {t("nav.call", { phone: chef.phones[0] })}
                 </a>
+                <ExportControls
+                  variant="stacked"
+                  tone="light"
+                  onAction={() => setIsOpen(false)}
+                />
               </div>
             </motion.div>
           )}
